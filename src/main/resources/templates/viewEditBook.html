@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Libro</title>
+    <th:block th:include="layout.html"></th:block>
+</head>
+
+<body>
+
+    <div class="container mt-4">
+        <h2>Editar Libro</h2>
+
+        <form th:action="@{'/editBooks/' + ${book.id}}" method="post">
+            <!-- Nombre del libro -->
+            <div class="form-group">
+                <label for="nombreLibro">Nombre del Libro:</label>
+                <input type="text" class="form-control" id="nombreLibro" name="name" th:value="${book.name}" required>
+            </div>
+
+            <!-- Autor (select) -->
+            <div class="form-group">
+                <label for="autor">Autor:</label>
+                <select class="form-control" id="autor" name="author" required>
+                    <option th:each="author : ${allAuthors}" th:value="${author.id}" th:text="${author.name}"
+                        th:selected="${author.id == book.author.id}"></option>
+                </select>
+            </div>
+
+            <!-- Año de Publicación -->
+            <div class="form-group">
+                <label for="anoPublicacion">Año de Publicación:</label>
+                <input type="number" class="form-control" id="anoPublicacion" name="yearPublication"
+                    th:value="${book.yearPublication}" required placeholder="Ej. 2023" min="1500" max="2100" maxlength="4">
+            </div>
+
+            <!-- Stock -->
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" class="form-control" id="stock" name="stock" th:value="${book.stock}" required>
+            </div>
+
+            <!-- Género (select) -->
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <select class="form-control" id="genero" name="genre" required>
+                    <option th:each="genre : ${allGenres}" th:value="${genre.id}" th:text="${genre.name}"
+                        th:selected="${genre.id == book.genre.id}"></option>
+                </select>
+            </div>
+
+            <!-- Editorial (select) -->
+            <div class="form-group">
+                <label for="editorial">Editorial:</label>
+                <select class="form-control" id="editorial" name="publisher" required>
+                    <option th:each="publisher : ${allPublishers}" th:value="${publisher.id}"
+                        th:text="${publisher.name}" th:selected="${publisher.id == book.publisher.id}"></option>
+                </select>
+            </div>
+
+            <!-- Botón de enviar -->
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </form>
+    </div>
+
+</body>
+
+</html>

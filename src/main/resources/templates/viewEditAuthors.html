@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Guardar Autores</title>
+    <th:block th:include="layout.html"></th:block>
+</head>
+
+<body>
+
+   
+
+    <div class="container mt-4">
+        <h2>Editar Autor</h2>
+
+        <form th:action="@{'/editAuthors/' + ${author.id}}" method="post">
+            <!-- Nombre del libro -->
+            <div class="form-group">
+                <label>Nombre del Autor:</label>
+                <input type="text" class="form-control" id="nombreLibro" name="name" th:value="${author.name}" required>
+            </div>
+
+            <!-- Fecha de Cumpleaños-->
+            <div class="form-group">
+                <label>Fecha de Cumpleaños:</label>
+                <input type="text" class="form-control" id="fechaCumpleanos" name="birthday" th:value="${author.birthday}" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" required>
+                <small>Ejemplo: 01/01/2000</small>
+            </div>
+
+            <!-- Nacionalidad -->
+            <div class="form-group">
+                <label>Nacionalidad</label>
+                <input type="text" class="form-control" id="nationality" name="nationality" th:value="${author.nationality}" required>
+            </div>
+
+            <!-- Botón de enviar -->
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+        </form>
+    </div>
+
+</body>
+</html>

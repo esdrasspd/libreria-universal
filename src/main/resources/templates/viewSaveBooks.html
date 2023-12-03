@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Guardar Libros</title>
+    <th:block th:include="layout.html"></th:block>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Librería Universal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/books">Libros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/authors">Autores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/genres">Géneros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/publishers">Editorial</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2>Agregar Libro</h2>
+
+        <form action="/saveBooks" method="post">
+            <!-- Nombre del libro -->
+            <div class="form-group">
+                <label for="nombreLibro">Nombre del Libro:</label>
+                <input type="text" class="form-control" id="nombreLibro" name="name" required>
+            </div>
+
+            <!-- Autor (select) -->
+            <div class="form-group">
+                <label for="autor">Autor:</label>
+                <select class="form-control" id="autor" name="author" required>
+                    <option value="" disabled selected>Seleccione un autor</option>
+                    <option th:each="author : ${allAuthors}" th:value="${author.id}" th:text="${author.name}"></option>
+                </select>
+            </div>
+
+            <!-- Año de Publicación -->
+            <div class="form-group">
+                <label for="anoPublicacion">Año de Publicación:</label>
+                <input type="number" class="form-control" id="anoPublicacion" name="yearPublication" required
+                    placeholder="Ej. 2023" min="1500" max="2100" maxlength="4">
+            </div>
+            
+
+            <!-- Stock -->
+            <div class="form-group">
+                <label for="stock">Stock:</label>
+                <input type="number" class="form-control" id="stock" name="stock" required>
+            </div>
+
+            <!-- Género (select) -->
+            <div class="form-group">
+                <label for="genero">Género:</label>
+                <select class="form-control" id="genero" name="genre" required>
+                    <option value="" disabled selected>Seleccione un géneror</option>
+                    <option th:each="genre : ${allGenres}" th:value="${genre.id}" th:text="${genre.name}"></option>
+                </select>
+            </div>
+
+            <!-- Editorial (select) -->
+            <div class="form-group">
+                <label for="editorial">Editorial:</label>
+                <select class="form-control" id="editorial" name="publisher" required>
+                    <option value="" disabled selected>Seleccione una editorial</option>
+                    <option th:each="publisher : ${allPublishers}" th:value="${publisher.id}"
+                        th:text="${publisher.name}"></option>
+                </select>
+            </div>
+
+            <!-- Botón de enviar -->
+            <button type="submit" class="btn btn-primary">Guardar Libro</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Módulo de Autores</title>
+    <th:block th:include="layout.html"></th:block>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Librería Universal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/books">Libros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/authors">Autores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/genres">Géneros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/publishers">Editorial</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+
+        
+        <form action="/findAuthorByName" method="post">
+            <div class="form-group">
+                <label for="name">Nombre del Autor</label>
+                <select name="id" class="form-control form-control-sm" required>
+                    <option value="">Selecciona una opción</option>
+                    <th:block th:each="author : ${authorSelected}">
+                        <option th:value="${author.id}" th:text="${author.name}" th:selected="${author.id eq id}"></option>
+                </select>
+                <br>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
+        </form>
+
+        <!-- Botón para agregar libro -->
+        <div class="mb-4">
+            <a href="/addAuthors" class="btn btn-success">Agregar Autor</a>
+        </div>
+    
+        <!-- Tabla de libros -->
+        <div>
+            <h2>Listado de Autores</h2>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fecha de Cumpleaños</th>
+                    <th scope="col">Nacionalidad</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Iterar sobre la lista de libros proporcionada por Spring -->
+                <th:block th:each="author : ${authors}">
+                    <tr>
+                        <td th:text="${author.name}"></td>
+                        <td th:text="${author.birthday}"></td>
+                        <td th:text="${author.nationality}"></td>
+                        <td>
+                            <a th:href="@{/editAuthors/{id}(id=${author.id})}" class="btn btn-warning">Editar</a>
+                        </td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+        </div>
+    
+    </div>
+</body>
+
+</html>

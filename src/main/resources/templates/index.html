@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Librería Universal</title>
+    <th:block th:include="layout.html"></th:block>
+</head>
+
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Librería Universal</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/books">Libros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/authors">Autores</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/genres">Géneros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/publishers">Editorial</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Contenido de bienvenida -->
+    <div class="container mt-4">
+        <div class="jumbotron">
+            <h1 class="display-4">¡Bienvenido a Librería Universal!</h1>
+            <p class="lead">Descubre una amplia colección de libros y sumérgete en el mundo de la lectura.</p>
+            <hr class="my-4">
+            <p>Explora nuestras secciones y encuentra los libros perfectos para ti.</p>
+            <a class="btn btn-primary btn-lg" href="/books" role="button">Explorar Libros</a>
+        </div>
+    </div>
+
+    <!-- Secciones -->
+    <div class="container">
+        
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="fixed-bottom bg-dark text-white text-center py-3">
+            <p>Librería Universal Designed by Esdras Abel Sapón Díaz</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>

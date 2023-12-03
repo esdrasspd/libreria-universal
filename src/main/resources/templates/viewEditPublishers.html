@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Guardar Géneros</title>
+    <th:block th:include="layout.html"></th:block>
+</head>
+
+<body>
+
+
+    <div class="container mt-4">
+        <h2>Editar Editorial</h2>
+
+        <form th:action="@{'/editPublishers/' + ${publisher.id}}" method="post">
+            <!-- Nombre del género -->
+            <div class="form-group">
+                <label>Nombre de la Editorial:</label>
+                <input type="text" class="form-control" id="nombreGenero" name="name" th:value="${publisher.name}" required>
+            </div>
+
+            <!-- Descripción -->
+            <div class="form-group">
+                <label>Descripción:</label>
+                <input type="text" class="form-control" id="descripcion" name="description" th:value="${publisher.description}" required>
+            </div>
+
+            
+
+            <!-- Botón de enviar -->
+            <button type="submit" class="btn btn-primary">Editar Editorial</button>
+        </form>
+    </div>
+
+</body>
+</html>
